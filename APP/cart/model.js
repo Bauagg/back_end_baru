@@ -5,10 +5,10 @@ const modelCart = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     },
-    product: [{
+    product: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Product'
-    }],
+    },
     qty: {
         type: Number,
         required: [true, 'qty harus di isi'],

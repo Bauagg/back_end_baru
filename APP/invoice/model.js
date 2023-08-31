@@ -9,21 +9,19 @@ const modelInvoice = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     },
-    carts: {
+    carts: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Cart'
-    },
-    products: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Product'
     }],
     address: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'DeliveryAddress'
     },
     isPaid: {
-        type: Boolean,
-        default: false
+        type: String,
+        enum: ['pending', 'success'],
+        messsage: '{VALUE} is not supported',
+        default: 'pending'
     }
 })
 

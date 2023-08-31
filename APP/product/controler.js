@@ -4,7 +4,7 @@ const Tag = require('../tag/model')
 
 const getProduct = async (req, res, next) => {
     try {
-        const { skip = 0, limit = 8, searchProduct = '', searchCategory = '', searchTag = [] } = req.query
+        const { skip = 0, limit = 8, searchProduct = '', searchCategory = '', searchTag = [], lastId } = req.query
         let Search = {}
 
         if (searchProduct.length) {
@@ -27,7 +27,12 @@ const getProduct = async (req, res, next) => {
             }
         }
 
-        const newProduct = await Product.find(Search).skip(skip).limit(limit).populate('category').populate('tag')
+        // falidasi paginesen untuk perquer hanya 8 paginasen
+        if (lastId) {
+            Search = { ...Search, _id: { $gt: lastId } }
+        }
+
+        const newProduct = await Product.find(Search).skip(skip).limit(limit).populate('category').populate('tag').sort({ _id: 1 })
 
         res.status(200).json({
             error: false,
