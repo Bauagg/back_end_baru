@@ -71,7 +71,6 @@ const generetInvoice = async (req, res, next) => {
             user: req.user.id,
             carts: cartId,
             address: addressId,
-            isPaid: false
         })
 
         res.status(201).json({

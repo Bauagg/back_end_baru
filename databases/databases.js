@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const { dbPort, dbHost, dbName } = require('../APP/config')
+const { dbHost, dbName, dbPort } = require('../APP/config')
 
 mongoose.connect(`mongodb://${dbHost}:${dbPort}/${dbName}`)
 

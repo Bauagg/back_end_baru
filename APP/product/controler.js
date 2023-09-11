@@ -34,7 +34,7 @@ const getProduct = async (req, res, next) => {
 
         const newProduct = await Product.find(Search).skip(skip).limit(limit).populate('category').populate('tag').sort({ _id: 1 })
 
-        res.status(200).json({
+        return res.status(200).json({
             error: false,
             message: 'get data success',
             datas: newProduct
